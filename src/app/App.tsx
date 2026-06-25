@@ -60,7 +60,7 @@ function SocialLinks({ className = "" }: { className?: string }) {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Instagram"
-        className="text-white/60 hover:text-[#ff5500] transition-colors"
+        className="text-white/60 hover:text-[#e2251b] transition-colors"
       >
         <Instagram size={18} strokeWidth={1.5} />
       </a>
@@ -69,7 +69,7 @@ function SocialLinks({ className = "" }: { className?: string }) {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="LinkedIn"
-        className="text-white/60 hover:text-[#ff5500] transition-colors"
+        className="text-white/60 hover:text-[#e2251b] transition-colors"
       >
         <Linkedin size={18} strokeWidth={1.5} />
       </a>
@@ -96,7 +96,7 @@ function Marquee({ text, bg, color }: { text: string; bg: string; color: string 
         {[...items, ...items].map((t, i) => (
           <span key={i} className="flex-shrink-0 flex items-center gap-10">
             {t}
-            <span style={{ color: "#ff5500", fontSize: "0.6em" }}>✦</span>
+            <span style={{ color: "#0b0b0b", fontSize: "0.6em" }}>✦</span>
           </span>
         ))}
       </div>
@@ -120,6 +120,7 @@ function Navbar() {
     { label: "Home", id: "home" },
     { label: "Our Program", id: "program" },
     { label: "Our History", id: "history" },
+    { label: "Donate", id: "donate" },
     { label: "Contact Us", id: "contact" },
   ];
 
@@ -138,7 +139,7 @@ function Navbar() {
           className="cursor-pointer"
           aria-label="The Hustle — Home"
         >
-          <Logo className="h-11" />
+          <Logo className="h-16 md:h-[4.5rem]" />
         </button>
 
         <nav className="hidden md:flex items-center gap-8">
@@ -152,15 +153,6 @@ function Navbar() {
               {l.label}
             </button>
           ))}
-          <a
-            href={LINKS.donate}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-4 py-2 text-sm font-bold text-white rounded-full transition-all hover:opacity-90 active:scale-95"
-            style={{ background: "#ff5500", fontFamily: f.display, letterSpacing: "0.05em" }}
-          >
-            Get Involved
-          </a>
         </nav>
 
         <button
@@ -187,15 +179,6 @@ function Navbar() {
               {l.label}
             </button>
           ))}
-          <a
-            href={LINKS.donate}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-left text-lg text-[#ff5500] font-bold"
-            style={{ fontFamily: f.display }}
-          >
-            Donate
-          </a>
         </div>
       )}
     </header>
@@ -224,17 +207,17 @@ function Hero() {
       <div className="relative z-10 flex-1 flex flex-col justify-end max-w-7xl mx-auto w-full px-6 pb-16 pt-32">
         <div className="flex items-center gap-3 mb-6">
           <span
-            className="text-[#ff5500] text-xs font-bold tracking-[0.3em] uppercase"
+            className="text-[#e2251b] text-xs font-bold tracking-[0.3em] uppercase"
             style={{ fontFamily: f.mono }}
           >
             Est. 2020
           </span>
-          <span className="w-12 h-px bg-[#ff5500]" />
+          <span className="w-12 h-px bg-[#e2251b]" />
           <span
             className="text-white/50 text-xs font-medium tracking-widest uppercase"
             style={{ fontFamily: f.mono }}
           >
-            San Francisco &amp; New York
+            New York
           </span>
         </div>
 
@@ -249,7 +232,7 @@ function Hero() {
         >
           Build Your
           <br />
-          <span style={{ color: "#ff5500", fontStyle: "italic", fontFamily: f.serif }}>
+          <span style={{ color: "#e2251b", fontStyle: "italic", fontFamily: f.serif }}>
             Future.
           </span>
         </h1>
@@ -265,7 +248,7 @@ function Hero() {
             <button
               onClick={() => scrollTo("program")}
               className="group flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm text-white transition-all hover:opacity-90"
-              style={{ background: "#ff5500", fontFamily: f.display }}
+              style={{ background: "#e2251b", fontFamily: f.display }}
             >
               Our Program
               <ArrowUpRight
@@ -273,15 +256,13 @@ function Hero() {
                 className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
               />
             </button>
-            <a
-              href={LINKS.donate}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={() => scrollTo("donate")}
               className="flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm text-white border border-white/20 transition-all hover:border-white/50"
               style={{ fontFamily: f.display }}
             >
               Donate
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -316,7 +297,7 @@ function Donate() {
         <div className="grid lg:grid-cols-[1fr_320px] gap-12 items-start">
           <div>
             <span
-              className="text-[#ff5500] text-xs font-bold tracking-[0.3em] uppercase"
+              className="text-[#e2251b] text-xs font-bold tracking-[0.3em] uppercase"
               style={{ fontFamily: f.mono }}
             >
               Fundraising Campaign
@@ -368,7 +349,7 @@ function Donate() {
               style={{ background: "#141414" }}
             >
               <p
-                className="text-[#ff5500] text-xs font-bold tracking-widest uppercase mb-2"
+                className="text-[#e2251b] text-xs font-bold tracking-widest uppercase mb-2"
                 style={{ fontFamily: f.mono }}
               >
                 Fundraising Goal
@@ -390,7 +371,7 @@ function Donate() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center justify-center gap-2 w-full py-3.5 rounded-full font-bold text-sm text-white transition-all hover:opacity-90"
-                style={{ background: "#ff5500", fontFamily: f.display, letterSpacing: "0.05em" }}
+                style={{ background: "#e2251b", fontFamily: f.display, letterSpacing: "0.05em" }}
               >
                 Donate Now
                 <ArrowUpRight
@@ -402,7 +383,7 @@ function Donate() {
                 href={LINKS.donate}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 text-[#ff5500] text-xs font-bold hover:text-white transition-colors inline-flex items-center gap-1.5"
+                className="mt-4 text-[#e2251b] text-xs font-bold hover:text-white transition-colors inline-flex items-center gap-1.5"
                 style={{ fontFamily: f.mono }}
               >
                 givebutter.com/thehustle26-27
@@ -434,7 +415,7 @@ function Donate() {
               </p>
               <a
                 href="mailto:brit@thehustle.org"
-                className="text-[#ff5500] text-sm hover:text-white transition-colors"
+                className="text-[#e2251b] text-sm hover:text-white transition-colors"
                 style={{ fontFamily: f.display }}
               >
                 brit@thehustle.org
@@ -452,7 +433,7 @@ function Program() {
   return (
     <section id="program" className="py-24 max-w-7xl mx-auto px-6">
       <span
-        className="text-[#ff5500] text-xs font-bold tracking-[0.3em] uppercase"
+        className="text-[#e2251b] text-xs font-bold tracking-[0.3em] uppercase"
         style={{ fontFamily: f.mono }}
       >
         What We Do
@@ -489,7 +470,7 @@ function Program() {
               href={LINKS.syep}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#ff5500] underline underline-offset-4 hover:text-white transition-colors"
+              className="text-[#e2251b] underline underline-offset-4 hover:text-white transition-colors"
             >
               Summer Youth Employment Program (SYEP)
             </a>{" "}
@@ -498,7 +479,7 @@ function Program() {
               href={LINKS.wlg}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#ff5500] underline underline-offset-4 hover:text-white transition-colors"
+              className="text-[#e2251b] underline underline-offset-4 hover:text-white transition-colors"
             >
               Work, Learn &amp; Grow (WLG)
             </a>{" "}
@@ -520,11 +501,11 @@ function Program() {
             href={LINKS.syep}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex flex-col gap-4 rounded-2xl p-6 border border-white/08 transition-all hover:border-[#ff5500]/40"
+            className="group flex flex-col gap-4 rounded-2xl p-6 border border-white/08 transition-all hover:border-[#e2251b]/40"
             style={{ background: "#141414" }}
           >
             <span
-              className="text-[#ff5500] text-xs font-bold tracking-widest uppercase"
+              className="text-[#e2251b] text-xs font-bold tracking-widest uppercase"
               style={{ fontFamily: f.mono }}
             >
               NYC Partnership
@@ -536,7 +517,7 @@ function Program() {
               Summer Youth Employment Program — paid summer work experience for NYC youth ages 14–24.
             </p>
             <span
-              className="flex items-center gap-2 text-xs font-bold text-[#ff5500] group-hover:gap-3 transition-all"
+              className="flex items-center gap-2 text-xs font-bold text-[#e2251b] group-hover:gap-3 transition-all"
               style={{ fontFamily: f.display }}
             >
               Learn more <ArrowUpRight size={12} />
@@ -547,11 +528,11 @@ function Program() {
             href={LINKS.wlg}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex flex-col gap-4 rounded-2xl p-6 border border-white/08 transition-all hover:border-[#ff5500]/40"
+            className="group flex flex-col gap-4 rounded-2xl p-6 border border-white/08 transition-all hover:border-[#e2251b]/40"
             style={{ background: "#141414" }}
           >
             <span
-              className="text-[#ff5500] text-xs font-bold tracking-widest uppercase"
+              className="text-[#e2251b] text-xs font-bold tracking-widest uppercase"
               style={{ fontFamily: f.mono }}
             >
               NYC Partnership
@@ -563,7 +544,7 @@ function Program() {
               Work, Learn &amp; Grow — year-round career readiness and paid employment for SYEP alumni.
             </p>
             <span
-              className="flex items-center gap-2 text-xs font-bold text-[#ff5500] group-hover:gap-3 transition-all"
+              className="flex items-center gap-2 text-xs font-bold text-[#e2251b] group-hover:gap-3 transition-all"
               style={{ fontFamily: f.display }}
             >
               Learn more <ArrowUpRight size={12} />
@@ -653,7 +634,7 @@ function BoardCarousel() {
       <div className="flex items-end justify-between gap-4 mb-8">
         <div>
           <span
-            className="text-[#ff5500] text-xs font-bold tracking-[0.3em] uppercase"
+            className="text-[#e2251b] text-xs font-bold tracking-[0.3em] uppercase"
             style={{ fontFamily: f.mono }}
           >
             Advisors
@@ -676,7 +657,7 @@ function BoardCarousel() {
             onClick={() => emblaApi?.scrollPrev()}
             disabled={!canPrev}
             aria-label="Previous board member"
-            className="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center text-white/60 hover:border-[#ff5500] hover:text-[#ff5500] transition-all disabled:opacity-25 disabled:pointer-events-none"
+            className="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center text-white/60 hover:border-[#e2251b] hover:text-[#e2251b] transition-all disabled:opacity-25 disabled:pointer-events-none"
           >
             <ChevronLeft size={20} />
           </button>
@@ -685,7 +666,7 @@ function BoardCarousel() {
             onClick={() => emblaApi?.scrollNext()}
             disabled={!canNext}
             aria-label="Next board member"
-            className="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center text-white/60 hover:border-[#ff5500] hover:text-[#ff5500] transition-all disabled:opacity-25 disabled:pointer-events-none"
+            className="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center text-white/60 hover:border-[#e2251b] hover:text-[#e2251b] transition-all disabled:opacity-25 disabled:pointer-events-none"
           >
             <ChevronRight size={20} />
           </button>
@@ -734,7 +715,7 @@ function BoardCarousel() {
                     {m.name}
                   </h4>
                   <p
-                    className="text-[#ff5500] text-xs font-bold tracking-wide uppercase mb-3 mt-1"
+                    className="text-[#e2251b] text-xs font-bold tracking-wide uppercase mb-3 mt-1"
                     style={{ fontFamily: f.mono }}
                   >
                     {m.role}
@@ -760,7 +741,7 @@ function BoardCarousel() {
             aria-label={`Go to ${m.name}`}
             onClick={() => emblaApi?.scrollTo(i)}
             className={`h-1.5 rounded-full transition-all ${
-              i === selectedIndex ? "w-8 bg-[#ff5500]" : "w-1.5 bg-white/20 hover:bg-white/40"
+              i === selectedIndex ? "w-8 bg-[#e2251b]" : "w-1.5 bg-white/20 hover:bg-white/40"
             }`}
           />
         ))}
@@ -774,7 +755,7 @@ function History() {
     <section id="history" className="py-24 border-t border-white/08">
       <div className="max-w-7xl mx-auto px-6">
         <span
-          className="text-[#ff5500] text-xs font-bold tracking-[0.3em] uppercase"
+          className="text-[#e2251b] text-xs font-bold tracking-[0.3em] uppercase"
           style={{ fontFamily: f.mono }}
         >
           Where We Started
@@ -812,7 +793,7 @@ function History() {
               between students and prominent founders and entrepreneurs.
             </p>
             <blockquote
-              className="text-white/75 border-l-2 border-[#ff5500] pl-6 leading-relaxed"
+              className="text-white/75 border-l-2 border-[#e2251b] pl-6 leading-relaxed"
               style={{ fontFamily: f.serif, fontStyle: "italic", fontSize: "1.15rem" }}
             >
               "Equipping students with essential life skills that are not adequately addressed
@@ -844,7 +825,7 @@ function History() {
               Brit Wrightson
             </p>
             <p
-              className="text-[#ff5500] text-[10px] font-bold tracking-wide uppercase text-center mt-1"
+              className="text-[#e2251b] text-[10px] font-bold tracking-wide uppercase text-center mt-1"
               style={{ fontFamily: f.mono }}
             >
               Founder &amp; Executive Director
@@ -865,7 +846,7 @@ function Contact() {
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
         <div>
           <span
-            className="text-[#ff5500] text-xs font-bold tracking-[0.3em] uppercase"
+            className="text-[#e2251b] text-xs font-bold tracking-[0.3em] uppercase"
             style={{ fontFamily: f.mono }}
           >
             Get in Touch
@@ -898,7 +879,7 @@ function Contact() {
           <img
             src={imgBrit}
             alt="Brit Wrightson"
-            className="w-28 h-28 rounded-full object-cover object-top border-2 border-[#ff5500]/40"
+            className="w-28 h-28 rounded-full object-cover object-top border-2 border-[#e2251b]/40"
           />
           <div>
             <p
@@ -909,7 +890,7 @@ function Contact() {
             </p>
             <a
               href={LINKS.contact}
-              className="text-white text-2xl md:text-3xl font-bold hover:text-[#ff5500] transition-colors"
+              className="text-white text-2xl md:text-3xl font-bold hover:text-[#e2251b] transition-colors"
               style={{ fontFamily: f.serif }}
             >
               Brit@thehustle.org
@@ -918,7 +899,7 @@ function Contact() {
           <a
             href={LINKS.contact}
             className="group flex items-center gap-2 px-8 py-3.5 rounded-full font-bold text-sm text-white transition-all hover:opacity-90"
-            style={{ background: "#ff5500", fontFamily: f.display, letterSpacing: "0.04em" }}
+            style={{ background: "#e2251b", fontFamily: f.display, letterSpacing: "0.04em" }}
           >
             Send an Email
             <ArrowUpRight
@@ -983,7 +964,7 @@ function Gallery() {
     <section id="gallery" className="py-24 border-t border-white/08">
       <div className="max-w-7xl mx-auto px-6">
         <span
-          className="text-[#ff5500] text-xs font-bold tracking-[0.3em] uppercase"
+          className="text-[#e2251b] text-xs font-bold tracking-[0.3em] uppercase"
           style={{ fontFamily: f.mono }}
         >
           In Action
@@ -1040,7 +1021,7 @@ function Footer() {
           className="cursor-pointer"
           aria-label="The Hustle — Home"
         >
-          <Logo className="h-9" />
+          <Logo className="h-12" />
         </button>
         <p className="text-white/30 text-xs text-center" style={{ fontFamily: f.mono }}>
           © {new Date().getFullYear()} The Hustle · 501(c)(3) Public Charity · EIN 88-3695077
@@ -1050,7 +1031,7 @@ function Footer() {
             href={LINKS.donate}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#ff5500] text-xs font-bold hover:opacity-80 transition-opacity"
+            className="text-[#e2251b] text-xs font-bold hover:opacity-80 transition-opacity"
             style={{ fontFamily: f.mono }}
           >
             Donate
@@ -1068,11 +1049,11 @@ export default function App() {
     <div className="bg-background text-foreground min-h-screen">
       <Navbar />
       <Hero />
-      <Marquee text="GET INVOLVED" bg="#ff5500" color="#0b0b0b" />
-      <Donate />
+      <Marquee text="GET INVOLVED" bg="#e2251b" color="#0b0b0b" />
       <Program />
-      <Marquee text="ENTREPRENEURSHIP FOR ALL" bg="#ff5500" color="#0b0b0b" />
+      <Marquee text="ENTREPRENEURSHIP FOR ALL" bg="#e2251b" color="#0b0b0b" />
       <History />
+      <Donate />
       <Contact />
       <Gallery />
       <Footer />
