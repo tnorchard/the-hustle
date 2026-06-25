@@ -6,10 +6,8 @@ import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 import imgGroup2019 from "../assets/group-2019-stairs.png";
 import imgGroup2022 from "../assets/group-2022.png";
 import imgBrit from "../assets/brit-wrightson.png";
-import imgDexter from "../assets/dexter-norales.png";
-import imgNina from "../assets/nina-olmstead.png";
-import imgNoah from "../assets/noah-headshot.png";
 import logo from "../assets/logo.png";
+import logoHeader from "../assets/logo-header.png";
 import galleryMesseroux from "../assets/gallery-messeroux-guest-2022.png";
 import gallerySweatsuitPitch from "../assets/gallery-sweatsuit-pitch.png";
 import galleryNoahGroup from "../assets/gallery-noah-and-group-2022.png";
@@ -41,10 +39,10 @@ function scrollTo(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 }
 
-function Logo({ className = "h-10" }: { className?: string }) {
+function Logo({ className = "h-10", header = false }: { className?: string; header?: boolean }) {
   return (
     <img
-      src={logo}
+      src={header ? logoHeader : logo}
       alt="The Hustle"
       className={`w-auto object-contain ${className}`}
     />
@@ -118,9 +116,9 @@ function Navbar() {
 
   const links = [
     { label: "Home", id: "home" },
+    { label: "Gallery", id: "gallery" },
     { label: "Our Program", id: "program" },
     { label: "Our History", id: "history" },
-    { label: "Donate", id: "donate" },
     { label: "Contact Us", id: "contact" },
   ];
 
@@ -139,7 +137,7 @@ function Navbar() {
           className="cursor-pointer"
           aria-label="The Hustle — Home"
         >
-          <Logo className="h-16 md:h-[4.5rem]" />
+          <Logo className="h-20 md:h-28" header />
         </button>
 
         <nav className="hidden md:flex items-center gap-8">
@@ -153,6 +151,15 @@ function Navbar() {
               {l.label}
             </button>
           ))}
+          <a
+            href={LINKS.donate}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-2.5 text-sm font-bold text-white rounded-full transition-all hover:opacity-90 active:scale-95"
+            style={{ background: "#e2251b", fontFamily: f.display, letterSpacing: "0.05em" }}
+          >
+            Donate
+          </a>
         </nav>
 
         <button
@@ -179,6 +186,15 @@ function Navbar() {
               {l.label}
             </button>
           ))}
+          <a
+            href={LINKS.donate}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-left text-lg text-[#e2251b] font-bold"
+            style={{ fontFamily: f.display }}
+          >
+            Donate
+          </a>
         </div>
       )}
     </header>
@@ -244,25 +260,25 @@ function Hero() {
           >
             {MISSION}
           </p>
-          <div className="flex gap-3 flex-shrink-0">
-            <button
-              onClick={() => scrollTo("program")}
-              className="group flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm text-white transition-all hover:opacity-90"
-              style={{ background: "#e2251b", fontFamily: f.display }}
-            >
-              Our Program
-              <ArrowUpRight
-                size={16}
-                className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
-              />
-            </button>
-            <button
-              onClick={() => scrollTo("donate")}
-              className="flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm text-white border border-white/20 transition-all hover:border-white/50"
-              style={{ fontFamily: f.display }}
+          <div className="flex-shrink-0">
+            <a
+              href={LINKS.donate}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-3 px-10 py-4 rounded-full font-bold text-white transition-all hover:opacity-90"
+              style={{
+                background: "#e2251b",
+                fontFamily: f.display,
+                fontSize: "1.1rem",
+                letterSpacing: "0.05em",
+              }}
             >
               Donate
-            </button>
+              <ArrowUpRight
+                size={20}
+                className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+              />
+            </a>
           </div>
         </div>
       </div>
@@ -275,154 +291,6 @@ function Hero() {
           Follow
         </span>
         <SocialLinks />
-      </div>
-    </section>
-  );
-}
-
-/* ─── Donate ──────────────────────────────────────────────── */
-const DONATE_BLURB = [
-  "For the last five years, I've poured my own time, energy, and resources into making The Hustle a reality with minimal outside funding. And despite that, I've already seen incredible success stories take shape — students who started businesses, landed life-changing internships, and gained the confidence to chase bigger dreams. These students have carried these skills into every corner of their lives, and many are now mentoring the current students in the program.",
-  "The Hustle teaches young people ages 16 to 24 the entrepreneurial and professional skills to chase their goals — whether that's college, a first internship, a job, or building something of their own. This summer, at least 50 students will complete our remote program through New York City's Summer Youth Employment Program, getting paid as interns while they learn. Some are returning faces from last summer. Many are discovering The Hustle for the very first time. Over the past year alone, we've taught more than 50 young people — and we're only growing.",
-  "Here's the part I don't usually say out loud: all of this has been built and run by one person — me. I teach every live session, create the curriculum, recruit the students, manage our SYEP partnerships, book guest speakers, build and attempt to maintain the website, and keep the whole thing standing. And we can't keep growing on passion alone.",
-  "A small group of early believers helped us get off the ground years ago, and I've never forgotten it. Now, as we grow, I'm asking our community to help us build something that lasts.",
-  "This is our biggest fundraising campaign yet, and we're raising $300,000 — a full annual operating budget that, for the first time in The Hustle's history, pays me a real salary and builds the team around me: coaches, curriculum specialists, a grant writer, and the tools to reach even more students next year.",
-  "Your gift doesn't just keep the lights on. It turns a labor of love into a sustainable organization that can serve hundreds of young people for years to come.",
-];
-
-function Donate() {
-  return (
-    <section id="donate" className="py-24 border-b border-white/08">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-[1fr_320px] gap-12 items-start">
-          <div>
-            <span
-              className="text-[#e2251b] text-xs font-bold tracking-[0.3em] uppercase"
-              style={{ fontFamily: f.mono }}
-            >
-              Fundraising Campaign
-            </span>
-            <h2
-              className="text-white mt-3 mb-3 leading-tight"
-              style={{
-                fontFamily: f.display,
-                fontWeight: 800,
-                fontSize: "clamp(2.2rem, 5vw, 3.5rem)",
-                letterSpacing: "-0.025em",
-              }}
-            >
-              The Hustle — 25&apos;-26&apos;
-            </h2>
-            <p
-              className="text-white/80 mb-10 leading-snug"
-              style={{
-                fontFamily: f.serif,
-                fontStyle: "italic",
-                fontSize: "clamp(1.25rem, 2.5vw, 1.6rem)",
-              }}
-            >
-              Five years of hustle. It&apos;s time to invest in what&apos;s next.
-            </p>
-
-            <div className="flex flex-col gap-6">
-              {DONATE_BLURB.map((paragraph) => (
-                <p
-                  key={paragraph.slice(0, 40)}
-                  className="text-white/60 leading-relaxed"
-                  style={{ fontFamily: f.display, fontSize: "1.05rem" }}
-                >
-                  {paragraph}
-                </p>
-              ))}
-              <p
-                className="text-white font-semibold leading-relaxed"
-                style={{ fontFamily: f.display, fontSize: "1.05rem" }}
-              >
-                Help me build what I&apos;ve only dreamed of. Donate today.
-              </p>
-            </div>
-          </div>
-
-          <div className="lg:sticky lg:top-28 flex flex-col gap-6">
-            <div
-              className="rounded-2xl border border-white/08 p-8"
-              style={{ background: "#141414" }}
-            >
-              <p
-                className="text-[#e2251b] text-xs font-bold tracking-widest uppercase mb-2"
-                style={{ fontFamily: f.mono }}
-              >
-                Fundraising Goal
-              </p>
-              <p
-                className="text-white text-4xl font-black mb-1"
-                style={{ fontFamily: f.display, letterSpacing: "-0.03em" }}
-              >
-                $300,000
-              </p>
-              <p
-                className="text-white/45 text-sm mb-8"
-                style={{ fontFamily: f.display }}
-              >
-                Full annual operating budget for 25&apos;-26&apos;
-              </p>
-              <a
-                href={LINKS.donate}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center justify-center gap-2 w-full py-3.5 rounded-full font-bold text-sm text-white transition-all hover:opacity-90"
-                style={{ background: "#e2251b", fontFamily: f.display, letterSpacing: "0.05em" }}
-              >
-                Donate Now
-                <ArrowUpRight
-                  size={16}
-                  className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
-                />
-              </a>
-              <a
-                href={LINKS.donate}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 text-[#e2251b] text-xs font-bold hover:text-white transition-colors inline-flex items-center gap-1.5"
-                style={{ fontFamily: f.mono }}
-              >
-                givebutter.com/thehustle26-27
-                <ArrowUpRight size={12} />
-              </a>
-            </div>
-
-            <div
-              className="rounded-2xl border border-white/08 p-8"
-              style={{ background: "#141414" }}
-            >
-              <p
-                className="text-white/50 text-xs font-bold tracking-widest uppercase mb-4"
-                style={{ fontFamily: f.mono }}
-              >
-                Organized by
-              </p>
-              <p
-                className="text-white font-bold mb-4"
-                style={{ fontFamily: f.display }}
-              >
-                The Hustle Presents
-              </p>
-              <p
-                className="text-white/45 text-sm leading-relaxed mb-4"
-                style={{ fontFamily: f.display }}
-              >
-                501(c)(3) Public Charity · EIN 88-3695077
-              </p>
-              <a
-                href="mailto:brit@thehustle.org"
-                className="text-[#e2251b] text-sm hover:text-white transition-colors"
-                style={{ fontFamily: f.display }}
-              >
-                brit@thehustle.org
-              </a>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
@@ -557,199 +425,6 @@ function Program() {
 }
 
 /* ─── Our History ─────────────────────────────────────────── */
-const boardMembers = [
-  {
-    name: "Brit Wrightson",
-    role: "Founder & Executive Director",
-    img: imgBrit,
-    imgPosition: "center 20%",
-    bio: "Founded The Hustle and leads curriculum, student programming, and organizational strategy. She coordinates the board, stewards subcommittee work across grants and fundraising, and drives the vision that keeps every program running.",
-  },
-  {
-    name: "Noah Greenberg",
-    role: "Co-founder & CEO, Stacker",
-    img: imgNoah,
-    imgPosition: "center 25%",
-    bio: "Serial entrepreneur building the world's most accessible newswire. A UCSB graduate based in NYC, he mentors students, sharpens The Hustle's pitch and budget strategy, and helps young founders turn ideas into real businesses.",
-  },
-  {
-    name: "Nina Olmstead",
-    role: "Director, LifeMoves",
-    img: imgNina,
-    imgPosition: "center 25%",
-    bio: "With a background in venture capital and technology, Nina brings deep nonprofit experience to the board. She is building bridges to the startup ecosystem—including Plug and Play—to connect students with founders, memberships, and sponsorship opportunities.",
-  },
-  {
-    name: "Richie",
-    role: "Board Member, Partnerships & Outreach",
-    bio: "Leads partnership development for The Hustle—connecting pro-bono web and social media support, exploring collaborations with HMI on space and joint programming, and building university ties with Tulane and Fordham for graduate-level curriculum support.",
-  },
-  {
-    name: "Kaylee",
-    role: "Board Member, Grants & Development",
-    bio: "Shapes The Hustle's grant writing strategy by gathering data on organizational priorities and aligning funding timelines with program goals. She works closely with leadership to turn community needs into compelling, fundable proposals.",
-  },
-  {
-    name: "Dexter Norales",
-    role: "Research Assistant, Stacker Media",
-    img: imgDexter,
-    imgPosition: "center 20%",
-    bio: "A KIPP College Prep alum and Posse Scholarship finalist, Syracuse University graduate who ran a successful reselling business in high school. He brings a student-alumni perspective to board conversations on programming, budget, and pitch strategy.",
-  },
-];
-
-function BoardCarousel() {
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    {
-      align: "start",
-      containScroll: "trimSnaps",
-      dragFree: false,
-    },
-    [WheelGesturesPlugin({ forceWheelAxis: "x" })],
-  );
-  const [canPrev, setCanPrev] = useState(false);
-  const [canNext, setCanNext] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(0);
-
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setCanPrev(emblaApi.canScrollPrev());
-    setCanNext(emblaApi.canScrollNext());
-    setSelectedIndex(emblaApi.selectedScrollSnap());
-  }, [emblaApi]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-    onSelect();
-    emblaApi.on("select", onSelect);
-    emblaApi.on("reInit", onSelect);
-    return () => {
-      emblaApi.off("select", onSelect);
-      emblaApi.off("reInit", onSelect);
-    };
-  }, [emblaApi, onSelect]);
-
-  return (
-    <div>
-      <div className="flex items-end justify-between gap-4 mb-8">
-        <div>
-          <span
-            className="text-[#e2251b] text-xs font-bold tracking-[0.3em] uppercase"
-            style={{ fontFamily: f.mono }}
-          >
-            Advisors
-          </span>
-          <h3
-            className="text-white mt-2 leading-tight"
-            style={{
-              fontFamily: f.display,
-              fontWeight: 800,
-              fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
-              letterSpacing: "-0.025em",
-            }}
-          >
-            The Board
-          </h3>
-        </div>
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={() => emblaApi?.scrollPrev()}
-            disabled={!canPrev}
-            aria-label="Previous board member"
-            className="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center text-white/60 hover:border-[#e2251b] hover:text-[#e2251b] transition-all disabled:opacity-25 disabled:pointer-events-none"
-          >
-            <ChevronLeft size={20} />
-          </button>
-          <button
-            type="button"
-            onClick={() => emblaApi?.scrollNext()}
-            disabled={!canNext}
-            aria-label="Next board member"
-            className="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center text-white/60 hover:border-[#e2251b] hover:text-[#e2251b] transition-all disabled:opacity-25 disabled:pointer-events-none"
-          >
-            <ChevronRight size={20} />
-          </button>
-        </div>
-      </div>
-
-      <div
-        className="overflow-hidden cursor-grab active:cursor-grabbing select-none touch-pan-y"
-        ref={emblaRef}
-      >
-        <div className="flex -ml-6">
-          {boardMembers.map((m) => (
-            <div
-              key={m.name}
-              className="flex-[0_0_100%] sm:flex-[0_0_85%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] min-w-0 pl-6"
-            >
-              <div
-                className="rounded-2xl overflow-hidden border border-white/08 h-full flex flex-col"
-                style={{ background: "#141414" }}
-              >
-                <div className="aspect-[4/5] w-full overflow-hidden bg-[#1e1e1e]">
-                  {m.img ? (
-                    <img
-                      src={m.img}
-                      alt={m.name}
-                      draggable={false}
-                      className="w-full h-full object-cover pointer-events-none"
-                      style={{ objectPosition: m.imgPosition ?? "center center" }}
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center">
-                      <span
-                        className="text-white/25 text-6xl font-black"
-                        style={{ fontFamily: f.display }}
-                      >
-                        {m.name
-                          .split(" ")
-                          .map((n) => n[0])
-                          .join("")}
-                      </span>
-                    </div>
-                  )}
-                </div>
-                <div className="p-6 flex flex-col flex-1">
-                  <h4 className="text-white font-bold text-lg" style={{ fontFamily: f.display }}>
-                    {m.name}
-                  </h4>
-                  <p
-                    className="text-[#e2251b] text-xs font-bold tracking-wide uppercase mb-3 mt-1"
-                    style={{ fontFamily: f.mono }}
-                  >
-                    {m.role}
-                  </p>
-                  <p
-                    className="text-white/45 text-sm leading-relaxed"
-                    style={{ fontFamily: f.display }}
-                  >
-                    {m.bio}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="flex justify-center gap-2 mt-6">
-        {boardMembers.map((m, i) => (
-          <button
-            key={m.name}
-            type="button"
-            aria-label={`Go to ${m.name}`}
-            onClick={() => emblaApi?.scrollTo(i)}
-            className={`h-1.5 rounded-full transition-all ${
-              i === selectedIndex ? "w-8 bg-[#e2251b]" : "w-1.5 bg-white/20 hover:bg-white/40"
-            }`}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
-
 function History() {
   return (
     <section id="history" className="py-24 border-t border-white/08">
@@ -772,7 +447,7 @@ function History() {
           Our History
         </h2>
 
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-14 items-center mb-16">
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-14 items-center">
           <div className="flex-1 w-full flex flex-col gap-6 order-2 lg:order-1">
             <p
               className="text-white/60 leading-relaxed"
@@ -832,8 +507,6 @@ function History() {
             </p>
           </div>
         </div>
-
-        <BoardCarousel />
       </div>
     </section>
   );
@@ -919,91 +592,160 @@ const galleryImages = [
     src: imgGroup2019,
     alt: "The Hustle students on a staircase in matching hoodies, 2019",
     caption: "The Hustle group, 2019",
-    wide: true,
   },
   {
     src: imgGroup2022,
     alt: "The Hustle students in matching tracksuits, 2022",
     caption: "The Hustle group, 2022",
-    wide: true,
   },
   {
     src: galleryNoahGroup,
     alt: "Mentors presenting to students in matching hoodies",
     caption: "Workshop with mentors & students, 2022",
-    wide: true,
   },
   {
     src: gallerySweatsuitPitch,
     alt: "Students presenting custom apparel designs on a projector",
     caption: "Students pitching their apparel brand",
-    wide: true,
   },
   {
     src: galleryMesseroux,
     alt: "Students collaborating around lab tables in a classroom",
     caption: "Collaborative session with a guest speaker, 2022",
-    wide: true,
   },
   {
     src: galleryWorkshop2019,
     alt: "Students and mentors meeting around a classroom table",
     caption: "Program planning session, 2019",
-    wide: false,
   },
   {
     src: gallerySweatsuitSketch,
     alt: "Student sketching a KIPP tracksuit design on paper",
     caption: "Student designing custom apparel",
-    wide: false,
   },
 ];
 
 function Gallery() {
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    {
+      align: "start",
+      containScroll: "trimSnaps",
+      dragFree: false,
+    },
+    [WheelGesturesPlugin({ forceWheelAxis: "x" })],
+  );
+  const [canPrev, setCanPrev] = useState(false);
+  const [canNext, setCanNext] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setCanPrev(emblaApi.canScrollPrev());
+    setCanNext(emblaApi.canScrollNext());
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
+    return () => {
+      emblaApi.off("select", onSelect);
+      emblaApi.off("reInit", onSelect);
+    };
+  }, [emblaApi, onSelect]);
+
   return (
     <section id="gallery" className="py-24 border-t border-white/08">
       <div className="max-w-7xl mx-auto px-6">
-        <span
-          className="text-[#e2251b] text-xs font-bold tracking-[0.3em] uppercase"
-          style={{ fontFamily: f.mono }}
-        >
-          In Action
-        </span>
-        <h2
-          className="text-white mt-3 mb-10 leading-tight"
-          style={{
-            fontFamily: f.display,
-            fontWeight: 800,
-            fontSize: "clamp(2.2rem, 5vw, 3.5rem)",
-            letterSpacing: "-0.025em",
-          }}
-        >
-          Gallery
-        </h2>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {galleryImages.map((photo) => (
-            <figure
-              key={photo.caption}
-              className={`group rounded-2xl overflow-hidden border border-white/08 ${
-                photo.wide ? "sm:col-span-2 lg:col-span-2" : ""
-              }`}
-              style={{ background: "#141414" }}
+        <div className="flex items-end justify-between gap-4 mb-8">
+          <div>
+            <span
+              className="text-[#e2251b] text-xs font-bold tracking-[0.3em] uppercase"
+              style={{ fontFamily: f.mono }}
             >
-              <div className={`overflow-hidden ${photo.wide ? "aspect-[16/9]" : "aspect-[4/5]"}`}>
-                <img
-                  src={photo.src}
-                  alt={photo.alt}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <figcaption
-                className="px-5 py-4 text-white/50 text-sm"
-                style={{ fontFamily: f.mono }}
+              In Action
+            </span>
+            <h2
+              className="text-white mt-3 leading-tight"
+              style={{
+                fontFamily: f.display,
+                fontWeight: 800,
+                fontSize: "clamp(2.2rem, 5vw, 3.5rem)",
+                letterSpacing: "-0.025em",
+              }}
+            >
+              Gallery
+            </h2>
+          </div>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => emblaApi?.scrollPrev()}
+              disabled={!canPrev}
+              aria-label="Previous photo"
+              className="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center text-white/60 hover:border-[#e2251b] hover:text-[#e2251b] transition-all disabled:opacity-25 disabled:pointer-events-none"
+            >
+              <ChevronLeft size={20} />
+            </button>
+            <button
+              type="button"
+              onClick={() => emblaApi?.scrollNext()}
+              disabled={!canNext}
+              aria-label="Next photo"
+              className="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center text-white/60 hover:border-[#e2251b] hover:text-[#e2251b] transition-all disabled:opacity-25 disabled:pointer-events-none"
+            >
+              <ChevronRight size={20} />
+            </button>
+          </div>
+        </div>
+
+        <div
+          className="overflow-hidden cursor-grab active:cursor-grabbing select-none touch-pan-y"
+          ref={emblaRef}
+        >
+          <div className="flex -ml-4">
+            {galleryImages.map((photo) => (
+              <figure
+                key={photo.caption}
+                className="flex-[0_0_75%] sm:flex-[0_0_45%] md:flex-[0_0_32%] lg:flex-[0_0_24%] min-w-0 pl-4"
               >
-                {photo.caption}
-              </figcaption>
-            </figure>
+                <div
+                  className="rounded-xl overflow-hidden border border-white/08"
+                  style={{ background: "#141414" }}
+                >
+                  <div className="aspect-[4/3] overflow-hidden">
+                    <img
+                      src={photo.src}
+                      alt={photo.alt}
+                      draggable={false}
+                      className="w-full h-full object-cover pointer-events-none"
+                    />
+                  </div>
+                  <figcaption
+                    className="px-3 py-2.5 text-white/45 text-xs truncate"
+                    style={{ fontFamily: f.mono }}
+                  >
+                    {photo.caption}
+                  </figcaption>
+                </div>
+              </figure>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex justify-center gap-2 mt-6">
+          {galleryImages.map((photo, i) => (
+            <button
+              key={photo.caption}
+              type="button"
+              aria-label={`Go to photo ${i + 1}`}
+              onClick={() => emblaApi?.scrollTo(i)}
+              className={`h-1.5 rounded-full transition-all ${
+                i === selectedIndex ? "w-8 bg-[#e2251b]" : "w-1.5 bg-white/20 hover:bg-white/40"
+              }`}
+            />
           ))}
         </div>
       </div>
@@ -1053,7 +795,6 @@ export default function App() {
       <Program />
       <Marquee text="ENTREPRENEURSHIP FOR ALL" bg="#e2251b" color="#0b0b0b" />
       <History />
-      <Donate />
       <Contact />
       <Gallery />
       <Footer />
